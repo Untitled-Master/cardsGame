@@ -150,6 +150,7 @@
         localStorage.setItem('player1', player1);
         localStorage.setItem('player2', player2);
         localStorage.setItem('me', player1);
+        localStorage.setItem('g', player2);
 
         // Display the room info
         document.getElementById('roomCode').textContent = randomCode;
@@ -178,6 +179,7 @@
                 localStorage.setItem('player1', roomData.player1);
                 localStorage.setItem('player2', roomData.player2);
                 localStorage.setItem('me', roomData.player2);
+                localStorage.setItem('g', roomData.player1);
 
                 // Display the joined room info
                 document.getElementById('joinRoomCode').textContent = roomCode;
