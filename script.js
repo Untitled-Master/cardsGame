@@ -71,7 +71,7 @@ document.getElementById('submit-btn').addEventListener('click', function() {
     let inputValue = document.getElementById('input-text').value;
     
     // Get the value from localStorage
-    let player2Value = localStorage.getItem('player2');
+    let player2Value = localStorage.getItem('g');
     
     // Get the result message div
     let resultMessage = document.getElementById('result-message');
