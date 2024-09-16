@@ -93,8 +93,8 @@ document.getElementById('submit-btn').addEventListener('click', function() {
 });
 
 // Function to check game state and show modal if game has ended
-window.onload = function() {
-    db.ref('rooms/' + room).once('value', function(snapshot) {
+function checkGameState() {
+    db.ref('rooms/' + room).on('value', function(snapshot) {
         const gameState = snapshot.val().state;
         if (gameState) {
             // Show the modal if the game state is true
@@ -102,4 +102,7 @@ window.onload = function() {
             modal.show();
         }
     });
-};
+}
+
+// Call the function to start listening for game state changes
+checkGameState();
