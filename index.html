@@ -62,6 +62,21 @@
         .btn {
             margin-top: 10px;
         }
+        #playBtn {
+            display: none;
+            background-color: #2ecc71;
+            color: white;
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+        #playBtn:hover {
+            background-color: #27ae60;
+        }
     </style>
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
@@ -79,8 +94,6 @@
 
     <div class="room-info" id="roomInfo">
         <p><strong>Room Code:</strong> <span id="roomCode"></span></p>
-        <p><strong>Player 1:</strong> <span id="player1"></span></p>
-        <p><strong>Player 2:</strong> <span id="player2"></span></p>
     </div>
 
     <hr class="text-white" />
@@ -94,9 +107,10 @@
 
     <div class="join-room-info" id="joinRoomInfo">
         <p><strong>Room Code:</strong> <span id="joinRoomCode"></span></p>
-        <p><strong>Player 1:</strong> <span id="joinPlayer1"></span></p>
-        <p><strong>Player 2:</strong> <span id="joinPlayer2"></span></p>
     </div>
+
+    <!-- Play Button (Hidden initially) -->
+    <button id="playBtn">Play</button>
 </div>
 
 <script>
@@ -135,12 +149,14 @@
         localStorage.setItem('room_code', randomCode);
         localStorage.setItem('player1', player1);
         localStorage.setItem('player2', player2);
+        localStorage.setItem('me', player1);
 
         // Display the room info
         document.getElementById('roomCode').textContent = randomCode;
-        document.getElementById('player1').textContent = player1;
-        document.getElementById('player2').textContent = player2;
         document.getElementById('roomInfo').style.display = 'block';
+
+        // Show the play button
+        document.getElementById('playBtn').style.display = 'block';
     });
 
     // Function to join a room based on the room code entered
@@ -156,18 +172,30 @@
         db.ref('rooms/' + roomCode).once('value').then(snapshot => {
             if (snapshot.exists()) {
                 const roomData = snapshot.val();
-                
+
+                // Save joined room data to local storage
+                localStorage.setItem('room_code', roomCode);
+                localStorage.setItem('player1', roomData.player1);
+                localStorage.setItem('player2', roomData.player2);
+                localStorage.setItem('me', roomData.player2);
+
                 // Display the joined room info
                 document.getElementById('joinRoomCode').textContent = roomCode;
-                document.getElementById('joinPlayer1').textContent = roomData.player1;
-                document.getElementById('joinPlayer2').textContent = roomData.player2;
                 document.getElementById('joinRoomInfo').style.display = 'block';
+
+                // Show the play button
+                document.getElementById('playBtn').style.display = 'block';
             } else {
                 alert('Room not found. Please enter a valid room code.');
             }
         }).catch(error => {
             console.error('Error:', error);
         });
+    });
+
+    // Play button event listener
+    document.getElementById('playBtn').addEventListener('click', function () {
+        window.location.href = "cards.html";
     });
 </script>
 
