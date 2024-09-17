@@ -20,6 +20,21 @@ let cardId = localStorage.getItem('me');
 let room = localStorage.getItem('room_code');
 let player1 = localStorage.getItem('player1');
 let player2 = localStorage.getItem('player2');
+let randomUrls = localStorage.getItem('randomUrls');
+let randomUrlsArray = randomUrls.split(',');
+function assignRandomUrls() {
+    for (let i = 0; i < randomUrlsArray.length; i++) {
+        let card = document.getElementById(i);
+        if (card) {
+            let img = card.querySelector('img'); // Select the img tag inside the card
+            if (img) {
+                img.src = randomUrlsArray[i]; // Assign the URL from the array
+            }
+        }
+    }
+}
+
+assignRandomUrls();
 
 function makeRed(card) {
     if (card.classList.contains('bg-dark')) {
