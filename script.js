@@ -92,13 +92,25 @@ document.getElementById('submit-btn').addEventListener('click', function() {
     let resultMessage = document.getElementById('result-message');
     
     // Check if the input value matches the localStorage value
-    if (inputValue === player2Value) {
-        resultMessage.textContent = 'You win!';
+    if (inputValue === player2Value && inputValue == player1) {
+        resultMessage.textContent = 'Player 2 won!';
         resultMessage.className = 'text-success'; // Optional: apply a Bootstrap class for styling
         db.ref('rooms/' + room).set({
             room: room,
             player1: player1,
             player2: player2,
+            won: 'player2',
+            state: true
+        });
+    }
+    else if (inputValue === player2Value && inputValue != player1) {
+        resultMessage.textContent = 'Player 1 won!';
+        resultMessage.className = 'text-success'; // Optional: apply a Bootstrap class for styling
+        db.ref('rooms/' + room).set({
+            room: room,
+            player1: player1,
+            player2: player2,
+            won: 'player1',
             state: true
         });
     } else {
@@ -113,6 +125,14 @@ function checkGameState() {
         const gameState = snapshot.val().state;
         if (gameState) {
             // Show the modal if the game state is true
+            let won = snapshot.val().won;
+            console.log(won);
+            let message = document.getElementById('gameEndedModalLabel');
+            if (won === 'player1') {
+                message.textContent = 'Player 1 won!';
+            } else {
+                message.textContent = 'Player 2 won!';
+            }
             const modal = new bootstrap.Modal(document.getElementById('gameEndedModal'));
             modal.show();
         }
