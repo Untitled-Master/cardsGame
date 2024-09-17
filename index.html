@@ -114,6 +114,42 @@
 </div>
 
 <script>
+    // Function to fetch JSON data from the file
+    async function fetchAnimeData() {
+    try {
+        const response = await fetch('anime.json');
+        const animeData = await response.json();
+        return animeData;
+    } catch (error) {
+        console.error('Error fetching the anime data:', error);
+    }
+}
+
+// Function to get random 24 icon URLs
+function getRandomUrls(animeData, count = 24) {
+    // Shuffle array using Fisher-Yates algorithm
+    for (let i = animeData.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [animeData[i], animeData[j]] = [animeData[j], animeData[i]];
+    }
+    
+    // Get first 24 icon URLs
+    const randomUrls = animeData.slice(0, count).map(character => character.icon_url);
+    return randomUrls;
+}
+
+// Main function to execute the process
+async function getRandomAnimeUrls() {
+    const animeData = await fetchAnimeData();
+    if (animeData) {
+        const randomUrls = getRandomUrls(animeData, 24);
+        localStorage.setItem('randomUrls', randomUrls);
+        console.log(randomUrls);  // Display the 24 random URLs in the console
+    }
+}
+
+// Call the main function
+getRandomAnimeUrls();
     // Initialize Firebase with the provided config
     const firebaseConfig = {
         apiKey: "AIzaSyDk3RLkM4f732rtIaaWfIQAx3IMvqamJZ0",
@@ -133,16 +169,18 @@
     // Function to create a room and save it in Firebase
     document.getElementById('createRoomBtn').addEventListener('click', function () {
         const randomCode = Math.random().toString(36).substring(2, 6).toUpperCase();  // Generate a random 4-letter room code
-        const player1 = Math.floor(Math.random() * 14) + 1;
-        const player2 = Math.floor(Math.random() * 14) + 1;
+        const player1 = Math.floor(Math.random() * 24);
+        const player2 = Math.floor(Math.random() * 24);
         const state = false; 
+        const randomUrls = localStorage.getItem('randomUrls').split(','); // Get the random URLs from local storage
 
         // Save room data in Firebase
         db.ref('rooms/' + randomCode).set({
             room: randomCode,
             player1: player1,
             player2: player2,
-            state: state
+            state: state,
+            randomUrls: randomUrls
         });
 
         // Save room data to local storage
@@ -180,6 +218,7 @@
                 localStorage.setItem('player2', roomData.player2);
                 localStorage.setItem('me', roomData.player2);
                 localStorage.setItem('g', roomData.player1);
+                localStorage.setItem('randomUrls', roomData.randomUrls);
 
                 // Display the joined room info
                 document.getElementById('joinRoomCode').textContent = roomCode;
@@ -199,6 +238,7 @@
     document.getElementById('playBtn').addEventListener('click', function () {
         window.location.href = "cards.html";
     });
+
 </script>
 
 </body>
