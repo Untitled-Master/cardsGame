@@ -13,11 +13,84 @@
             width: 100%;
             height: 100%;
         }
+        .bg-dark-custom {
+            background-color: #121212;
+        }
+        .text-light-custom {
+            color: #e0e0e0;
+        }
+        .card {
+            cursor: pointer;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        body {
+            background-color: #000; /* Black background */
+            color: #00FF00; /* Cybersecurity green */
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            max-width: 1200px;
+        }
+
+        .card {
+            background-color: #111; /* Darker card background */
+            border: 1px solid #00FF00; /* Green border */
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05); /* Slight zoom on hover */
+        }
+
+        .card .img-top {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .body {
+            padding: 10px;
+        }
+
+        .text {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .input-group input {
+            border: 1px solid #00FF00;
+            background-color: #222; /* Dark input background */
+            color: #00FF00; /* Green text */
+        }
+
+        .input-group button {
+            background-color: #00FF00;
+            color: #000; /* Black text */
+            border: none;
+        }
+
+        .input-group button:hover {
+            background-color: #00cc00;
+        }
+
+        .modal-content {
+            background-color: #111;
+            color: #00FF00;
+        }
+
+        .modal-header .btn-close {
+            filter: invert(1);
+        }
     </style>
 </head>
 
 <body class="bg-dark text-light">
-    <h1 id="code"></h1>
+    <h3 id="code"></h3>
     <div class="container mt-5">
         <!-- First Row -->
         <div class="row row-cols-7 g-3">
@@ -26,7 +99,7 @@
                 <div id="0" class="card text-center bg-dark border-light" onclick="makeRed(this)">
                     <img src="https://imgix.ranker.com/user_node_img/68/1343066/original/1343066-photo-u50?auto=format&q=60&fit=crop&fm=pjpg&dpr=2&crop=faces&h=150&w=150" class="img-top" alt="Image 1">
                     <div class="body">
-                        <p class="text">1</p>
+                        <p class="text">0</p>
                     </div>
                 </div>
             </div>
@@ -163,7 +236,7 @@
                 <div id="16" class="card text-center bg-dark border-light" onclick="makeRed(this)">
                     <img src="https://imgix.ranker.com/user_node_img/59/1165570/original/1165570-photo-u47?auto=format&q=60&fit=crop&fm=pjpg&dpr=2&crop=faces&h=150&w=150" class="img-top" alt="Image 9">
                     <div class="body">
-                        <p class="text">17</p>
+                        <p class="text">16</p>
                     </div>
                 </div>
             </div>
@@ -171,7 +244,7 @@
                 <div id="17" class="card text-center bg-dark border-light" onclick="makeRed(this)">
                     <img src="https://imgix.ranker.com/user_node_img/72/1431432/original/1431432-photo-u-1988225046?auto=format&q=60&fit=crop&fm=pjpg&dpr=2&crop=faces&h=150&w=150" class="img-top" alt="Image 10">
                     <div class="body">
-                        <p class="text">18</p>
+                        <p class="text">17</p>
                     </div>
                 </div>
             </div>
@@ -179,7 +252,7 @@
                 <div id="18" class="card text-center bg-dark border-light" onclick="makeRed(this)">
                     <img src="https://imgix.ranker.com/user_node_img/4269/85375180/original/85375180-photo-u1924676350?auto=format&q=60&fit=crop&fm=pjpg&dpr=2&crop=faces&h=150&w=150" class="img-top" alt="Image 11">
                     <div class="body">
-                        <p class="text">19</p>
+                        <p class="text">18</p>
                     </div>
                 </div>
             </div>
@@ -187,7 +260,7 @@
                 <div id="19" class="card text-center bg-dark border-light" onclick="makeRed(this)">
                     <img src="https://via.placeholder.com/100" class="img-top" alt="Image 12">
                     <div class="body">
-                        <p class="text">20</p>
+                        <p class="text">19</p>
                     </div>
                 </div>
             </div>
@@ -195,7 +268,7 @@
                 <div id="20" class="card text-center bg-dark border-light" onclick="makeRed(this)">
                     <img src="https://via.placeholder.com/100" class="img-top" alt="Image 13">
                     <div class="body">
-                        <p class="text">21</p>
+                        <p class="text">20</p>
                     </div>
                 </div>
             </div>
@@ -203,7 +276,7 @@
                 <div id="21" class="card text-center bg-dark border-light" onclick="makeRed(this)">
                     <img src="https://via.placeholder.com/100" class="img-top" alt="Image 14">
                     <div class="body">
-                        <p class="text">22</p>
+                        <p class="text">21</p>
                     </div>
                 </div>
             </div>
@@ -211,7 +284,7 @@
                 <div id="22" class="card text-center bg-dark border-light" onclick="makeRed(this)">
                     <img src="https://via.placeholder.com/100" class="img-top" alt="Image 8">
                     <div class="body">
-                        <p class="text">23</p>
+                        <p class="text">22</p>
                     </div>
                 </div>
             </div>
@@ -219,7 +292,7 @@
                 <div id="23" class="card text-center bg-dark border-light" onclick="makeRed(this)">
                     <img src="https://via.placeholder.com/100" class="img-top" alt="Image 8">
                     <div class="body">
-                        <p class="text">24</p>
+                        <p class="text">23</p>
                     </div>
                 </div>
             </div>
