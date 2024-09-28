@@ -113,9 +113,26 @@ document.getElementById('submit-btn').addEventListener('click', function() {
             won: 'player1',
             state: true
         });
-    } else {
-        resultMessage.textContent = 'Try again.';
+    } else if (inputValue != player2Value && inputValue != player1) {
+        resultMessage.textContent = 'you lost.';
         resultMessage.className = 'text-danger'; // Optional: apply a Bootstrap class for styling
+        db.ref('rooms/' + room).set({
+            room: room,
+            player1: player1,
+            player2: player2,
+            won: 'player2',
+            state: true
+        });
+    } else{
+        resultMessage.textContent = 'you lost.';
+        resultMessage.className = 'text-danger'; // Optional: apply a Bootstrap class for styling
+        db.ref('rooms/' + room).set({
+            room: room,
+            player1: player1,
+            player2: player2,
+            won: 'player1',
+            state: true
+        });
     }
 });
 
